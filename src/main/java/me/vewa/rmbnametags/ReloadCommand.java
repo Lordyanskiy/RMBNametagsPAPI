@@ -15,6 +15,7 @@ public class ReloadCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         plugin.loadConfig();
+        commandSender.sendMessage(plugin.getMessage("reload-success"));
         return true;
     }
 }

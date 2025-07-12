@@ -6,7 +6,19 @@ description: A plugin to hide player names and show them on right-click in actio
 permissions:
   rmbnametags.reload:
     default: op
+  rmbnametags.toggle:
+    default: op
+  rmbnametags.toggle.all:
+    default: op
 commands:
   rmbnametags_reload:
     usage: /rmbnametags_reload
     permission: rmbnametags.reload
+  rmbnametags_toggle:
+    usage: /rmbnametags_toggle [player]
+    permission: rmbnametags.toggle
+    description: Включить/отключить видимость ника для игрока
+  rmbnametags_toggleall:
+    usage: /rmbnametags_toggleall
+    permission: rmbnametags.toggle.all
+    description: Включить/отключить видимость ников для всех игроков
