@@ -58,6 +58,13 @@ public class RMBNametags extends JavaPlugin implements Listener {
         board = manager.getMainScoreboard();
         hiddenNamesTeam = board.getTeam("hiddenNames");
 
+        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
+            Bukkit.getPluginManager().registerEvents(this, this); // 
+        } else {
+            getLogger().warn("Could not find PlaceholderAPI! This plugin is required."); // 
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
+
         if (hiddenNamesTeam == null) {
             hiddenNamesTeam = board.registerNewTeam("hiddenNames");
         }
