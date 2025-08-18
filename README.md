@@ -1,9 +1,7 @@
 # RMBNametags
- [![CodeFactor](https://www.codefactor.io/repository/github/vewaclub/rmbnametags/badge)](https://www.codefactor.io/repository/github/vewaclub/rmbnametags)
- [![Modrinth downloads](https://img.shields.io/modrinth/dt/rmbnametags)](https://modrinth.com/plugin/rmbnametags)
 
- 
-[![Modrinth](https://raw.githubusercontent.com/gist/jenchanws/842eee8428e1e0aec20de4594878156a/raw/0dbefc2fcbec362d14f1689acb807183ceffdbe1/modrinth.svg)](https://modrinth.com/plugin/rmbnametags)
+
+
 
 
 Простой плагин для Minecraft, который скрывает имена игроков и показывает их при нажатии правой кнопкой мыши в панели действий (actionbar).
@@ -22,6 +20,7 @@
 - Настройка времени отображения ника
 - Настройка типа невидимого символа
 - Настройка всех сообщений плагина
+- Интеграция PlaceholderAPI
 
 ## Команды
 
