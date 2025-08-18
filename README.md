@@ -60,11 +60,11 @@ hide-in-tab-list: false
 # Настройки сообщений
 messages:
   reload-success: "&aRMBNametags: Конфигурация успешно перезагружена!"
-  name-visible: "&aНик игрока &f{PLAYER_NAME}&a теперь виден."
-  name-hidden: "&aНик игрока &f{PLAYER_NAME}&a теперь скрыт."
+  name-visible: "&aНик игрока &f%player_name%&a теперь виден."
+  name-hidden: "&aНик игрока &f%player_name%&a теперь скрыт."
   all-names-visible: "&aНики всех игроков теперь видны."
   all-names-hidden: "&aНики всех игроков теперь скрыты."
-  player-not-found: "&cИгрок &f{PLAYER_NAME}&c не найден или не в сети."
+  player-not-found: "&cИгрок &f%player_name%&c не найден или не в сети."
   no-permission: "&cУ вас нет прав для использования этой команды."
 ```
 
