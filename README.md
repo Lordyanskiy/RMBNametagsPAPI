@@ -41,11 +41,11 @@
 display-time: 3
 
 # Формат отображения ника
-# Используйте & для цветов и {PLAYER_NAME} для имени игрока
-name-format: "&a&l{PLAYER_NAME}"
+# Используйте & для цветов и разные papi значения (для ника используется %player_name%)
+name-format: "&a&l%player_name%"
 
 # Заменять ники игроков на невидимый символ
-use-invisible-character: true
+use-invisible-character: false
 
 # Тип невидимого символа (доступные варианты: ZWSP, NBSP, ZWNJ, ZWJ)
 # ZWSP - Zero-Width Space (U+200B) - невидимый пробел нулевой ширины
@@ -55,7 +55,7 @@ use-invisible-character: true
 invisible-character-type: ZWSP
 
 # Скрывать имя игрока в табе (списке игроков)
-hide-in-tab-list: true
+hide-in-tab-list: false
 
 # Настройки сообщений
 messages:
