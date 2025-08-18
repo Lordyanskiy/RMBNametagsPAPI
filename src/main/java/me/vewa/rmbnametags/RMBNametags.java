@@ -1,5 +1,6 @@
 package me.vewa.rmbnametags;
 
+import me.clip.placeholderapi.PlaceholderAPI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -13,7 +14,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 import org.bukkit.scoreboard.Team;
-import org.bstats.bukkit.Metrics;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +48,21 @@ public class RMBNametags extends JavaPlugin implements Listener {
         nameVisibilityStorage = new NameVisibilityStorage(this);
         loadConfig();
 
-        new Metrics(this, 22888);
+        if (Bukkit.getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            /*
+             * We register the EventListener here, when PlaceholderAPI is installed.
+             * Since all events are in the main class (this class), we simply use "this"
+             */
+            Bukkit.getPluginManager().registerEvents(this, this);
+        } else {
+            /*
+             * We inform about the fact that PlaceholderAPI isn't installed and then
+             * disable this plugin to prevent issues.
+             */
+            getLogger().warning("Could not find PlaceholderAPI! This plugin is required.");
+            Bukkit.getPluginManager().disablePlugin(this);
+        }
+
         getServer().getPluginManager().registerEvents(this, this);
         getCommand("rmbnametags_reload").setExecutor(new ReloadCommand(this));
         getCommand("rmbnametags_toggle").setExecutor(new ToggleCommand(this));
@@ -57,13 +71,6 @@ public class RMBNametags extends JavaPlugin implements Listener {
         manager = Bukkit.getScoreboardManager();
         board = manager.getMainScoreboard();
         hiddenNamesTeam = board.getTeam("hiddenNames");
-
-        if (Bukkit.getPluginManager().isPluginEnabled("PlaceholderAPI")) {
-            Bukkit.getPluginManager().registerEvents(this, this); // 
-        } else {
-            getLogger().warn("Could not find PlaceholderAPI! This plugin is required."); // 
-            Bukkit.getPluginManager().disablePlugin(this);
-        }
 
         if (hiddenNamesTeam == null) {
             hiddenNamesTeam = board.registerNewTeam("hiddenNames");
@@ -96,7 +103,7 @@ public class RMBNametags extends JavaPlugin implements Listener {
         reloadConfig();
         FileConfiguration config = getConfig();
         displayTime = config.getInt("display-time", 3);
-        nameFormat = ChatColor.translateAlternateColorCodes('&', config.getString("name-format", "&6{PLAYER_NAME}"));
+        nameFormat = ChatColor.translateAlternateColorCodes('&', config.getString("name-format", "&6%player_name%"));
         useInvisibleCharacter = config.getBoolean("use-invisible-character", true);
         hideInTabList = config.getBoolean("hide-in-tab-list", true);
         
@@ -148,10 +155,10 @@ public class RMBNametags extends JavaPlugin implements Listener {
             messages.put("reload-success", ChatColor.GREEN + "RMBNametags: Конфигурация успешно перезагружена!");
         }
         if (!messages.containsKey("name-visible")) {
-            messages.put("name-visible", ChatColor.GREEN + "Ник игрока " + ChatColor.WHITE + "{PLAYER_NAME}" + ChatColor.GREEN + " теперь виден.");
+            messages.put("name-visible", ChatColor.GREEN + "Ник игрока " + ChatColor.WHITE + "%player_name%" + ChatColor.GREEN + " теперь виден.");
         }
         if (!messages.containsKey("name-hidden")) {
-            messages.put("name-hidden", ChatColor.GREEN + "Ник игрока " + ChatColor.WHITE + "{PLAYER_NAME}" + ChatColor.GREEN + " теперь скрыт.");
+            messages.put("name-hidden", ChatColor.GREEN + "Ник игрока " + ChatColor.WHITE + "%player_name%" + ChatColor.GREEN + " теперь скрыт.");
         }
         if (!messages.containsKey("all-names-visible")) {
             messages.put("all-names-visible", ChatColor.GREEN + "Ники всех игроков теперь видны.");
@@ -160,7 +167,7 @@ public class RMBNametags extends JavaPlugin implements Listener {
             messages.put("all-names-hidden", ChatColor.GREEN + "Ники всех игроков теперь скрыты.");
         }
         if (!messages.containsKey("player-not-found")) {
-            messages.put("player-not-found", ChatColor.RED + "Игрок " + ChatColor.WHITE + "{PLAYER_NAME}" + ChatColor.RED + " не найден или не в сети.");
+            messages.put("player-not-found", ChatColor.RED + "Игрок " + ChatColor.WHITE + "%player_name%" + ChatColor.RED + " не найден или не в сети.");
         }
         if (!messages.containsKey("no-permission")) {
             messages.put("no-permission", ChatColor.RED + "У вас нет прав для использования этой команды.");
@@ -273,7 +280,8 @@ public class RMBNametags extends JavaPlugin implements Listener {
     }
 
     private void showPlayerNameInActionbar(Player clickingPlayer, Player clickedPlayer) {
-        String name = nameFormat.replace("{PLAYER_NAME}", clickedPlayer.getName());
+        String name = nameFormat;
+        name = PlaceholderAPI.setPlaceholders(clickedPlayer, name);
         clickingPlayer.sendActionBar(name);
         new BukkitRunnable() {
             @Override
