@@ -4,68 +4,68 @@
 
 
 
-Простой плагин для Minecraft, который скрывает имена игроков и показывает их при нажатии правой кнопкой мыши в панели действий (actionbar).
-# ТРЕБУЕТСЯ УСТАНОВКА [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
+A simple Minecraft PLUGIN to hide player names and show them on right-click in actionbar
+# INSTALL REQUIRED: [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
 
-![Ник появляется в панели действий при нажатии ПКМ](https://cdn.modrinth.com/data/cached_images/3232f03c8108ea611b1bdf8b42e6ce3320641d7c.png)
+![Nickname pops up in actionbar when you press rmb](https://cdn.modrinth.com/data/cached_images/3232f03c8108ea611b1bdf8b42e6ce3320641d7c.png)
 
-## Возможности
+## Features
 
-- Скрытие ников игроков
-- Замена ников на невидимый символ
-- Показ ника игрока при нажатии на него правой кнопкой мыши
-- Возможность включать/отключать видимость ников отдельных игроков
-- Возможность включать/отключать видимость ников всех игроков
-- Настройка формата отображения ника
-- Настройка времени отображения ника
-- Настройка типа невидимого символа
-- Настройка всех сообщений плагина
-- Интеграция PlaceholderAPI
+- Hiding player names
+- Replacing player names with an invisible character
+- Displaying a player's name when you right-click on it
+- Enabling/disabling the visibility of individual player names
+- Enabling/disabling the visibility of all player names
+- Customizing the display format of the name
+- Customizing the display time of the name
+- Customizing the type of the invisible characters
+- Customizing all plugin messages
+- Integrating PlaceholderAPI
 
-## Команды
+## Commands
 
-- `/rmbnametags_reload` - Перезагрузить конфигурацию плагина
-- `/rmbnametags_toggle [игрок]` - Включить/отключить видимость ника игрока
-- `/rmbnametags_toggleall` - Включить/отключить видимость ников всех игроков
+- `/rmbnametags_reload` - Reload a plugin config
+- `/rmbnametags_toggle [игрок]` - Enable/disable visibility of player name
+- `/rmbnametags_toggleall` - Enable/disable visibility of all players name
 
-## Права
+## Permission
 
-- `rmbnametags.reload` - Право на использование команды `/rmbnametags_reload`
-- `rmbnametags.toggle` - Право на использование команды `/rmbnametags_toggle`
-- `rmbnametags.toggle.all` - Право на использование команды `/rmbnametags_toggleall`
+- `rmbnametags.reload` - Permission to use the command `/rmbnametags_reload`
+- `rmbnametags.toggle` - Permission to use the command `/rmbnametags_toggle`
+- `rmbnametags.toggle.all` - Permission to use the command `/rmbnametags_toggleall`
 
-## Конфигурация
+## Config
 
 ```yml
-# Время отображения ника в секундах
+# Nickname display time
 display-time: 3
 
-# Формат отображения ника
-# Используйте & для цветов и разные papi значения (для ника используется %player_name%)
+# Nickname display format
+# Use & for colors, and use %  for papi values (for nickname use %player_name%)
 name-format: "&a&l%player_name%"
 
-# Заменять ники игроков на невидимый символ
+# Change player's name with an invisible character
 use-invisible-character: false
 
-# Тип невидимого символа (доступные варианты: ZWSP, NBSP, ZWNJ, ZWJ)
-# ZWSP - Zero-Width Space (U+200B) - невидимый пробел нулевой ширины
-# NBSP - Non-Breaking Space (U+00A0) - неразрывный пробел
-# ZWNJ - Zero-Width Non-Joiner (U+200C) - невидимый разделитель
-# ZWJ - Zero-Width Joiner (U+200D) - невидимый соединитель
+# Type of invisible character (available options: ZWSP, NBSP, ZWNJ, ZWJ)
+# ZWSP - Zero-Width Space (U+200B) - invisible zero-width gap
+# NBSP - Non-Breaking Space (U+00A0) - unbreakable gap
+# ZWNJ - Zero-Width Non-Joiner (U+200C) - invisible separator
+# ZWJ - Zero-Width Joiner (U+200D) - invisible connector
 invisible-character-type: ZWSP
 
-# Скрывать имя игрока в табе (списке игроков)
+# Hide player's name in tab (списке игроков)
 hide-in-tab-list: false
 
-# Настройки сообщений
+# Message settings
 messages:
-  reload-success: "&aRMBNametags: Конфигурация успешно перезагружена!"
-  name-visible: "&aНик игрока &f%player_name%&a теперь виден."
-  name-hidden: "&aНик игрока &f%player_name%&a теперь скрыт."
-  all-names-visible: "&aНики всех игроков теперь видны."
-  all-names-hidden: "&aНики всех игроков теперь скрыты."
-  player-not-found: "&cИгрок &f%player_name%&c не найден или не в сети."
-  no-permission: "&cУ вас нет прав для использования этой команды."
+  reload-success: "&aRMBNametags: Config was successfully reload!"
+  name-visible: "&aPlayer name &f%player_name%&a now hidden."
+  name-hidden: "&aPlayer name &f%player_name%&a now visible."
+  all-names-visible: "&aAll player's name became hidden."
+  all-names-hidden: "&aAll player's name became visible."
+  player-not-found: "&cPlayer &f%player_name%&c not found or offline."
+  no-permission: "&cYou don't have permission to use this command."
 ```
 
 ### bStats
