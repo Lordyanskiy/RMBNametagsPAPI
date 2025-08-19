@@ -5,7 +5,7 @@
 
 
 Простой плагин для Minecraft, который скрывает имена игроков и показывает их при нажатии правой кнопкой мыши в панели действий (actionbar).
-#ТРЕБУЕТСЯ УСТАНОВКА [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
+# ТРЕБУЕТСЯ УСТАНОВКА [PlaceholderAPI](https://www.spigotmc.org/resources/placeholderapi.6245/)
 
 ![Ник появляется в панели действий при нажатии ПКМ](https://cdn.modrinth.com/data/cached_images/3232f03c8108ea611b1bdf8b42e6ce3320641d7c.png)
 
